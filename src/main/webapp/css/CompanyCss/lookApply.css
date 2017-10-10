@@ -1,0 +1,451 @@
+@charset "utf-8";
+
+body, h1, h2, h3, 
+h4, h5, h6, hr, p, 
+blockquote, dl, dt, 
+dd, ul, ol, li, pre, 
+form, fieldset, legend, 
+button, input, textarea, 
+th, td{
+	margin:0px;
+	padding:0px;
+}
+body{
+	background-color: #f4f5f6;
+	font-family: 微软雅黑;
+}
+
+
+
+/*header*/
+.clearfix::after{
+	content:"";
+	clear:both;
+	display: block;
+}
+.top-bar{
+	width:100%;
+	min-width:1200px;
+	background:#9d0300;
+	height:40px;
+	position: relative;
+	z-index: 2;
+}
+.top-bar-1200{
+	clear:both;
+	width:1200px;
+	min-width:980px;
+	background:#9d0300;
+	margin:0 auto;
+}
+.bar-1200 > a{
+	color:white;
+}
+.bar-1200 > a:hover{
+	text-decoration: none;
+}
+.a-wel{
+	float: right;
+	height:40px;
+	line-height: 40px;
+	margin-right: 20px;	
+	position: relative;
+	cursor:pointer;
+}
+.a-wel img{
+	transition:transform 0.5s;
+	-moz-transition:transform 0.5s; 
+	-webkit-transition:transform 0.5s; 
+	-o-transition:transform 0.5s; 
+}
+.a-wel:hover > img{
+	transform: rotate(180deg);
+} 
+.over-down{
+	width:180px;
+	background:white;
+	color:#9d0300 !important;
+	text-align:center;
+	border:1px solid #dddddd;
+	border-bottom:none; 
+	top:10px;
+}
+.out-up{
+	background:#9d0300;
+	color:white;
+	top:0px;
+	text-align:center;
+}
+.a-wel ul{
+	display: none;
+	list-style:none;
+	position:absolute;
+	background: white;
+	width:106px;
+	border:1px solid #dddddd;
+	border-top:none; 
+	right:-0.5px;
+	top:39px;
+}
+.a-wel ul li a{
+	float:left;
+	width:100px;
+	height:30px;
+	background: white;
+	color:black;
+	line-height: 30px;
+	text-align:center;
+	margin-top:10px;
+	margin-left:2px;
+	text-decoration:none;
+
+}
+ .a-wel ul li a:hover{
+	text-decoration:none;
+	background:#ce3d3a;
+	color:white;
+} 
+.a-wel ul li a:last-child{
+	margin-bottom:10px;
+}
+.a-wel img{
+	margin-top:-8px;
+}
+.a-set{
+	float: right;
+	display: inline-block;
+	height:40px;
+	line-height: 40px;
+	margin-right: 20px;
+	position: relative;
+	text-decoration:none;
+}
+.a-info{
+	float: right;
+	display: inline-block;
+	height:40px;
+	line-height: 40px;
+	margin-right: 20px;
+	position: relative;
+	text-decoration:none;
+}
+.a-ext{
+	float: right;
+	display: inline-block;
+	height:40px;
+	line-height: 40px;
+	margin-right: 20px;
+	position: relative;
+}
+.over{
+	width:120px;
+	background:white;
+	color:#9d0300 !important;
+	top:10px;
+	text-align:center;
+	border:1px solid #dddddd;
+}
+.out{
+	background:#9d0300;
+	color:white;
+	top:0px;
+	text-align:center;
+}
+.logo-bar{
+	width:100%;
+	min-width:1200px;
+	background:#ce3d3a;
+	height:70px;
+	color:white;
+}
+.logo-bar-1200{
+	clear: both;
+	width:1200px;
+	min-width:980px;
+	background:#ce3d3a;
+	margin:0 auto;
+}
+.logo{
+	float: left;
+	margin-top:15px;
+	
+}
+.logo-right{
+	float: right;
+	margin-top:15px;
+}
+#logo-right-ul{
+	list-style:none;
+}
+#logo-right-ul li{
+	float:left;
+	line-height: 40px;
+	text-align:center;
+	position: relative;
+}
+#logo-right-ul > li:last-child{
+	width:100px;
+	height:40px;
+	line-height: 40px;
+	text-align:center;
+	position: relative;
+	cursor:pointer;
+}
+#logo-right-ul > li:last-child:hover{
+	background: white;
+	color:#9d0300;
+}
+#logo-right-ul li > a{
+	display: inline-block;
+	text-decoration:none;
+	color:white;
+	width:100px;
+	height:40px;
+	line-height: 40px;
+	text-align:center;
+
+}
+#logo-right-ul li > a:hover{
+	text-decoration:none;
+	background: white;
+	color:#9d0300;
+}
+#logo-right-child-ul{
+	position: absolute;
+	z-index: 100;
+	list-style:none;
+	display: none;
+	background: white;
+	border:1px solid #dddddd;
+	border-top:0px;
+}
+#logo-right-child-ul li{
+	float: left;
+}
+
+#logo-right-child-ul li >a{
+	color:#9d0300;
+	text-align: left;
+	text-indent: 10px;
+	width:170px;
+	height:30px;
+	line-height: 30px;
+	margin:5px 0;
+}
+#logo-right-child-ul li a:hover{
+	text-decoration:none;
+	background: #ce3d3a;
+	color:white;
+}
+
+
+/*middle*/
+.middle-1200{
+	width:1200px;
+	margin:0px auto;
+	margin-top:15px;
+}
+.middle-box{
+	width:1200px;
+	background-color: white;
+	font-size:16px;
+	padding-bottom: 40px;
+}
+.padding{
+	padding-top:30px;
+}
+.margin-top20{
+	margin-top:20px !important;
+}
+.margin-top60{
+	margin-top:60px !important;
+}
+.line-90{
+	width:90%;
+	margin:0 auto;
+}
+
+.post-name{
+	display:inline-block;
+	font-size:28px;
+	margin-left:40px;
+	width:400px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-compantyName{
+	display:inline-block;
+	margin-left:20px;
+	width:250px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.line-90 button{
+	float:right;
+	width:150px;
+	height:50px;
+	font-size:18px;
+}
+.post-salary{
+	display:inline-block;
+	font-size:20px;
+	margin-left:40px;
+	color:#ce3d3a;
+	width:150px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-jobExp{
+	display:inline-block;
+	margin-left:20px;
+	width:160px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-nature{
+	display:inline-block;
+	margin-left:20px;
+	width:160px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-eduRequset{
+	display:inline-block;
+	margin-left:100px;
+	width:180px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-majorRequest {
+	display:inline-block;
+	margin-left:40px;
+	width:400px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-number{
+	display:inline-block;
+	margin-left:50px;
+	width:200px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-address{
+	display:inline-block;
+	margin-left:40px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-contact{
+	display:inline-block;
+	margin-left:40px;
+	width:150px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-contactEmail{
+	display:inline-block;
+	margin-left:40px;
+	width:250px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-postTime{
+	display:inline-block;
+	margin-left:200px;
+	width:200px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.gwfl,.gwzz,.gwyq{
+	font-size:24px;
+	margin-left:30px;
+}
+.gwfl-detail,.gwzz-detail,.gwyq-detail{
+	margin-left:50px;
+	margin-top:10px;
+}
+.gwfl-detail p,.gwzz-detail p,.gwyq-detail p{
+	line-height:40px;
+}
+
+.applyTable{
+	margin:0 auto;
+	font-size:14px;
+}
+.applyTable th{
+	text-align:center;
+	padding:10px 40px;
+	border:1px solid #ccc;
+}
+.applyTable td{
+	text-align:center;
+	padding:10px 30px;
+	border:1px solid #ccc;
+}
+.applyTable td a{
+	text-decoration: none;
+	color:#ce3d3a;
+}
+.applyTable td a:hover{
+	color:#9d0300;
+}
+
+/*模态框/
+.modal-body{
+	height:300px;
+	overflow: auto;
+}
+.modal-left{
+	float:left;
+	margin-top:20px;
+}
+.modal-right{
+	float:right;
+	margin-top:20px;
+}
+.modalTextarea{
+	float:left;
+	width:100%;
+	height:100px;
+}
+.modalTextarea + button{
+	margin-top:20px;
+	width:100px;
+}
+/*footer*/
+footer{
+	margin-top: 20px;
+	width:100%;
+	min-width:1200px;
+	height:100px;
+	background:#ce3d3a;
+}
+.footer-1200{
+	width:1200px;
+	margin:0 auto;
+}
+.footer-left{
+	float: left;
+	color:white;
+	margin-top:20px;
+	margin-left:5%
+}
+.footer-right{
+	float: right;
+	color:white;
+	margin-top:20px;
+	margin-right:10%;
+}

@@ -1,0 +1,149 @@
+//onload和ready的区别
+1.执行时间
+window.onload必须等到所有图片加载完以后在加载
+$(document).ready()所有DOM结构加载完后就加载。
+2.编写个数不同window.onload不能同时编写多个，如果有多个window.onload方法，后面的onload方法会将前面的覆盖
+$(document).ready()可以同时编写多个，并且都可以得到执行
+
+//get和post的区别
+1. get是从服务器上获取数据，post是向服务器传送数据。
+2. get是把参数数据队列加到提交表单的ACTION属性所指的URL中，值和表单内各个字段一一对应，在URL中可以看到。post是通过HTTP post机制，将表单内各个字段与其内容放置在HTML HEADER内一起传送到ACTION属性所指的URL地址。用户看不到这个过程。
+3. 对于get方式，服务器端用Request.QueryString获取变量的值，对于post方式，服务器端用Request.Form获取提交的数据。
+4. get传送的数据量较小，不能大于2KB。post传送的数据量较大，一般被默认为不受限制。但理论上，IIS4中最大量为80KB，IIS5中为100KB。
+5. get安全性非常低，post安全性较高。但是执行效率却比Post方法好。 
+建议：
+1、get方式的安全性较Post方式要差些，包含机密信息的话，建议用Post数据提交方式；
+2、在做数据查询时，建议用Get方式；而在做数据添加、修改或删除时，建议用Post方式；
+
+
+//样式表link和import的区别
+1.link是XHTML标签，除了加载CSS外，还可以定义RSS等其他事务；@import属于CSS范畴，只能加载CSS。
+2.link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。
+3.link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本的浏览器不支持。
+ink支持使用Javascript控制DOM去改变样式；而@import不支持
+
+
+
+
+
+//兼容IE获取内联或外联样式表的css样式
+function getStyle(obj, attr)  
+{  
+    if(obj.currentStyle)  
+    {  
+        return obj.currentStyle[attr];  
+    }  
+    else  
+    {  
+        return getComputedStyle(obj,false)[attr];  
+    }  
+}  
+
+//IE兼容ajax
+var xmlhttp;  
+if (window.XMLHttpRequest)  
+  {// code for IE7+, Firefox, Chrome, Opera, Safari  
+  xmlhttp=new XMLHttpRequest();  
+  }  
+else  
+  {// code for IE6, IE5  
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");  
+  }  
+
+
+
+//IE兼容问题
+Var ev = ev || window.event
+document.documentElement.clientWidth || document.body.clientWidth
+Var target = ev.srcElement||ev.target
+
+
+
+//css实现div的垂直水平居中
+#box1{
+	position:relative;
+	width: 240px;
+        height: 160px;
+	background-color:blue;
+}
+#box2{
+	float:left;
+    width: 50px;
+    height: 10px;
+	background-color:red;
+	margin: auto;
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+}
+
+<div id="box1">
+  <div id="box2"></div>
+  <div id="box3"></div>
+</div>
+
+
+
+
+//简述同步和异步的区别
+同步是阻塞模式，异步是非阻塞模式。同步指一个进程在执行某个请求时，该进程会一直等待知道收到请求的返回信息，异步在等待的时候，该进程会继续执行另外的请求直到收到返回结果。
+
+
+
+
+//统计字符串中字母个数或统计最多字母数。
+$(document).ready(function(){
+	(function(){
+		var str='ababcca';
+		var obj={};
+		var count=0;
+		var value='';
+		for( var i=0;i<str.length;i++)
+		{
+			var v=str.charAt(i);
+			if(obj[v]&&obj[v].value==v)
+			{
+				obj[v].count=obj[v].count+1;
+			}
+			else
+			{
+				obj[v]={};
+				obj[v].value=v;
+				obj[v].count=1;
+			}
+		}
+		for(var x in obj)
+		{
+			document.write(obj[x].value +'='+obj[x].count+' ');
+		}
+	})()
+});
+
+
+
+//一次完整的HTTP事务是怎样的一个过程？
+基本流程： a. 域名解析 b. 发起TCP的3次握手 c. 建立TCP连接后发起http请求 d. 服务器端响应http请求，浏览器得到html代码 e. 浏览器解析html代码，并请求html代码中的资源 f. 浏览器对页面进行渲染呈现给用户
+
+
+
+
+//冒泡排序
+$(document).ready(function(){
+	var arr=[1,5,4,3,2];
+	var tem='';
+	for(var i=0;i<arr.length;i++)
+	{
+		for(var j=0;j<arr.length-1-i;j++)
+		{
+			if(arr[j]>arr[j+1])
+			{
+				tem=arr[j];
+				arr[j]=arr[j+1];
+				arr[j+1]=tem;
+			}
+		}
+	}
+	for(var x=0;x<arr.length;x++)
+	{
+		document.write(arr[x]);
+	}
+})

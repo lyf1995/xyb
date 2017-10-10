@@ -1,0 +1,75 @@
+@charset "utf-8";
+
+body, h1, h2, h3, 
+h4, h5, h6, hr, p, 
+blockquote, dl, dt, 
+dd, ul, ol, li, pre, 
+form, fieldset, legend, 
+button, input, textarea, 
+th, td{
+	margin:0px;
+	padding:0px;
+}
+.login{
+	width:400px;
+	height:300px;
+	margin:50px auto;
+}
+#login-form{
+	width:400px;
+	height:300px;
+	border:1px solid green;
+	margin:0px auto;
+}
+#login-form ul{
+	list-style:none;
+	width:400px;
+	height:50px;
+	font-family:微软雅黑;
+	font-size:18px;	
+	margin-bottom:25px;
+}
+#login-form ul li{
+	float:left;
+	width:132.5px;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	cursor:pointer;
+}
+.on{
+	background-color: white;
+	color:#d9534f;
+}
+.off{
+	background-color:#f3f3f3; 
+	color:black;
+}
+.login-input{
+	width:300px;
+	margin:0px auto 20px;
+}
+.btn-login{
+	width:300px;
+	margin-left:50px;
+	font-family: 寰蒋闆呴粦;
+	font-size:18px;
+}
+form span:nth-of-type(1){
+	color:#b1b8cb;
+	margin-left:20px;
+	display: block;
+	margin-top:20px;
+	float: left;
+}
+form span:nth-of-type(2){
+	display: block;
+	margin-top:20px;
+	float: left;
+	color:#b1b8cb;
+	margin-left:170px;
+}
+form span a{
+	color:#ce3d3a;
+	text-decoration:none;
+}

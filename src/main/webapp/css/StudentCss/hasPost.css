@@ -1,0 +1,406 @@
+@charset "utf-8";
+
+body, h1, h2, h3, 
+h4, h5, h6, hr, p, 
+blockquote, dl, dt, 
+dd, ul, ol, li, pre, 
+form, fieldset, legend, 
+button, input, textarea, 
+th, td{
+	margin:0px;
+	padding:0px;
+}
+body{
+	background-color: #f4f5f6;
+	font-family: 微软雅黑;
+}
+
+
+
+/*header*/
+.clearfix::after{
+	content:"";
+	clear:both;
+	display: block;
+}
+.top-bar{
+	width:100%;
+	min-width:1200px;
+	background:#9d0300;
+	height:40px;
+	position: relative;
+	z-index: 2;
+}
+.top-bar-1200{
+	clear:both;
+	width:1200px;
+	min-width:980px;
+	background:#9d0300;
+	margin:0 auto;
+}
+.bar-1200 > a{
+	color:white;
+}
+.bar-1200 > a:hover{
+	text-decoration: none;
+}
+.a-wel{
+	float: right;
+	height:40px;
+	line-height: 40px;
+	margin-right: 20px;	
+	position: relative;
+	cursor:pointer;
+}
+.a-wel img{
+	transition:transform 0.5s;
+	-moz-transition:transform 0.5s; 
+	-webkit-transition:transform 0.5s; 
+	-o-transition:transform 0.5s; 
+}
+.a-wel:hover > img{
+	transform: rotate(180deg);
+} 
+.over-down{
+	width:180px;
+	background:white;
+	color:#9d0300 !important;
+	text-align:center;
+	border:1px solid #dddddd;
+	border-bottom:none; 
+	top:10px;
+}
+.out-up{
+	background:#9d0300;
+	color:white;
+	top:0px;
+	text-align:center;
+}
+.a-wel ul{
+	display: none;
+	list-style:none;
+	position:absolute;
+	background: white;
+	width:106px;
+	border:1px solid #dddddd;
+	border-top:none; 
+	right:-0.5px;
+	top:39px;
+}
+.a-wel ul li a{
+	float:left;
+	width:100px;
+	height:30px;
+	background: white;
+	color:black;
+	line-height: 30px;
+	text-align:center;
+	margin-top:10px;
+	margin-left:2px;
+	text-decoration:none;
+
+}
+ .a-wel ul li a:hover{
+	text-decoration:none;
+	background:#ce3d3a;
+	color:white;
+} 
+.a-wel ul li a:last-child{
+	margin-bottom:10px;
+}
+.a-wel img{
+	margin-top:-8px;
+}
+.a-set{
+	float: right;
+	display: inline-block;
+	height:40px;
+	line-height: 40px;
+	margin-right: 20px;
+	position: relative;
+	text-decoration:none;
+}
+.a-info{
+	float: right;
+	display: inline-block;
+	height:40px;
+	line-height: 40px;
+	margin-right: 20px;
+	position: relative;
+	text-decoration:none;
+}
+.a-ext{
+	float: right;
+	display: inline-block;
+	height:40px;
+	line-height: 40px;
+	margin-right: 20px;
+	position: relative;
+}
+.over{
+	width:120px;
+	background:white;
+	color:#9d0300 !important;
+	top:10px;
+	text-align:center;
+	border:1px solid #dddddd;
+}
+.out{
+	background:#9d0300;
+	color:white;
+	top:0px;
+	text-align:center;
+}
+.logo-bar{
+	width:100%;
+	min-width:1200px;
+	background:#ce3d3a;
+	height:70px;
+	color:white;
+}
+.logo-bar-1200{
+	clear: both;
+	width:1200px;
+	min-width:980px;
+	background:#ce3d3a;
+	margin:0 auto;
+}
+.logo{
+	float: left;
+	margin-top:15px;
+	
+}
+.logo-right{
+	float: right;
+	margin-top:15px;
+}
+#logo-right-ul{
+	list-style:none;
+}
+#logo-right-ul li{
+	float:left;
+	line-height: 40px;
+	text-align:center;
+	position: relative;
+}
+#logo-right-ul > li:last-child{
+	width:100px;
+	height:40px;
+	line-height: 40px;
+	text-align:center;
+	position: relative;
+	cursor:pointer;
+}
+#logo-right-ul > li:last-child:hover{
+	background: white;
+	color:#9d0300;
+}
+#logo-right-ul li > a{
+	display: inline-block;
+	text-decoration:none;
+	color:white;
+	width:100px;
+	height:40px;
+	line-height: 40px;
+	text-align:center;
+
+}
+#logo-right-ul li > a:hover{
+	text-decoration:none;
+	background: white;
+	color:#9d0300;
+}
+#logo-right-child-ul{
+	position: absolute;
+	z-index: 100;
+	list-style:none;
+	display: none;
+	background: white;
+	border:1px solid #dddddd;
+	border-top:0px;
+}
+#logo-right-child-ul li{
+	float: left;
+}
+
+#logo-right-child-ul li >a{
+	color:#9d0300;
+	text-align: left;
+	text-indent: 10px;
+	width:170px;
+	height:30px;
+	line-height: 30px;
+	margin:5px 0;
+}
+#logo-right-child-ul li a:hover{
+	text-decoration:none;
+	background: #ce3d3a;
+	color:white;
+}
+
+
+
+/*middle*/
+.middle-1200{
+	width:1200px;
+	margin:0px auto;
+	margin-top:15px;
+}
+.middle-box{
+	width:1200px;
+	height:800px;
+	background-color: white;
+}
+.middle-box-top{
+	padding-top:20px;
+	padding-left:40px;
+	margin-bottom:20px;
+}
+.middle-box-bar{
+	width:94%;
+	margin:20px auto 0;
+	background-color: #f4f5f6;
+}
+.middle-box-bar ul{
+	list-style:none;
+}
+.middle-box-bar ul li{
+	float:left;
+	height:50px;
+	line-height:50px;
+	padding:0 30px;
+	cursor:pointer;
+}
+.on{
+	background-color: #fff;
+	color: #ce3d3a;
+	border: #ddd 1px solid;
+	border-bottom: 0;
+	position: relative;
+	top: -1px;
+	font-weight: bold;
+}
+.middle-box-content{
+	border:1px #ccc solid;
+	height:130px;
+	width:80%;
+	margin:30px auto 0;
+	-moz-box-shadow:20px 10px 10px 1px rgba(0,0,0,0.5);       
+    -webkit-box-shadow:20px 10px 10px 1px rgba(0,0,0,0.5);   
+	box-shadow:20px 10px 10px 1px rgba(0,0,0,0.5);
+	cursor:pointer;
+}
+.middle-box-content:hover{
+	transform:scale(1.1);
+	-moz-box-shadow:20px 20px 10px 1px rgba(0,0,0,0.5);       
+    -webkit-box-shadow:20px 20px 10px 1px rgba(0,0,0,0.5);   
+	box-shadow:20px 20px 10px 1px rgba(0,0,0,0.5);
+}
+.middle-box-content-top{
+	padding-top:30px;
+	padding-left:20px;
+}
+.deliverTime{
+	float:left;
+	font-size:18px;
+	width:195px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-name{
+	float:left;
+	margin-left:40px;
+	width:150px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-salary{
+	float:left;
+	margin-left:40px;
+	width:100px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-jobExp{
+	float:left;
+	margin-left:40px;
+	width:150px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-eduRequset{
+	float:left;
+	margin-left:40px;
+	width:150px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+
+.middle-box-content-bottom{
+	padding-top:20px;
+	padding-left:50px;
+	line-height:48px;
+}
+.post-status{
+	float:left;
+	font-size:20px;
+	color:#ce3d3a;
+	width:180px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+	
+}
+.post-company{
+	float:left;
+	margin-left:40px;
+	wdith:200px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-address{
+	float:left;
+	margin-left:50px;
+	width:250px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+.post-time{
+	float:left;
+	margin-left:50px;
+	width:180px;
+	overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
+/*footer*/
+footer{
+	margin-top: 20px;
+	width:100%;
+	min-width:1200px;
+	height:100px;
+	background:#ce3d3a;
+}
+.footer-1200{
+	width:1200px;
+	margin:0 auto;
+}
+.footer-left{
+	float: left;
+	color:white;
+	margin-top:20px;
+	margin-left:5%
+}
+.footer-right{
+	float: right;
+	color:white;
+	margin-top:20px;
+	margin-right:10%;
+}
