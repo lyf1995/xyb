@@ -14,6 +14,7 @@ import xyb.entity.HasPost;
 import xyb.entity.HasRecruit;
 import xyb.entity.Post;
 import xyb.entity.Recruit;
+import xyb.entity.SchoolInfo;
 import xyb.entity.StudentInfo;
 import xyb.entity.User;
 
@@ -139,6 +140,11 @@ public class CompanyDaoImpl implements CompanyDao{
 	}
 	public void sendContacts(Contact contact) {
 		sessionFactory.getCurrentSession().save(contact);	
+	}
+	public SchoolInfo getSchoolInfoById(Integer schoolId) {
+		String hql="from SchoolInfo schoolInfo where schoolInfo.id="+schoolId;
+		SchoolInfo schoolInfo=(SchoolInfo)sessionFactory.getCurrentSession().createQuery(hql).uniqueResult();
+		return schoolInfo;
 	}
 
 }

@@ -1,6 +1,7 @@
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\entity\HasPost.java
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\entity\Recruit.java
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\service\StudentService.java
+F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\util\MailUtil.java
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\service\SchoolService.java
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\service\CompanyService.java
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\controller\SchoolControllers.java
@@ -8,8 +9,8 @@ F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\entity\StGrjj.java
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\entity\StQzyx.java
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\entity\StXnzw.java
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\entity\Contact.java
-F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\service\impl\SchoolServiceImpl.java
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\service\impl\StudentServiceImpl.java
+F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\service\impl\SchoolServiceImpl.java
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\entity\PostPojo.java
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\entity\Post.java
 F:\jiaoxue\eclipse-jee\workspace\xyb\src\main\java\xyb\dao\impl\StudentDaoImpl.java

@@ -20,6 +20,28 @@
 	<script src="../../loading/js/loading.js"></script>
 </head>
 <body>
+<!--聊天模态框-->
+<input id="userId" type="hidden" value="${user.id }">
+<input id="schId" type="hidden" value="${schoolInfo.id }">
+<input id="comId" type="hidden" value="${postPojo.comId }">
+<div class="modal fade" id="myModal" tabindex="-1" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				${postPojo.comName }
+			    <button class="close" data-dismiss="modal"><span style="font-size:40px;">&times;</span></button>
+			</div>
+			<div class="modal-body clearfix">
+				<div class="clearfix">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<textarea id="content" class="modalTextarea form-control"></textarea>
+				<button id="send" class="btn btn-danger">发送</button>
+			</div>
+		</div>
+	</div>
+</div>
 <!--dialog弹出框-->
 <div id="btn-dialogBox"></div>
 <header>
@@ -54,7 +76,7 @@
 			</div>
 			<div class="logo-right clearfix">
 				<ul id="logo-right-ul" class="clearfix">
-					<li><a href="Internship.html">实习计划</a></li>
+					<!-- <li><a href="Internship.html">实习计划</a></li> -->
 					<li><a href="searchPost.html">查看岗位</a></li>
 					<li><a href="schoolRecruit.html">我的校招</a></li>
 				</ul>
@@ -68,7 +90,7 @@
 		<div class="line-90 clearfix">
 			<span class="post-name">${postPojo.postName }</span>
 			<span class="post-compantyName">${postPojo.comName }</span>
-			<button id="callCompanty" class="btn btn-danger" data-toggle="modal" data-target="#myModal">联系公司</button>
+			<button id="callCompany" class="btn btn-danger" data-toggle="modal" data-target="#myModal">联系公司</button>
 		</div>
 		<div class="line-90 clearfix margin-top20">
 			<span class="post-salary">${postPojo.postSalary }元/月</span>

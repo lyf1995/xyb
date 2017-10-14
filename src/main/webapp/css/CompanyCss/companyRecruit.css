@@ -296,10 +296,11 @@ body{
 }
 
 .recruit-show{
-	height:600px;
+	min-height:600px;
 	margin-top:15px;
 	background-color: white;
 	overflow:hidden; 
+	padding-bottom:100px;
 }
 .recruit-box-top{
 	padding-top:20px;
@@ -359,15 +360,12 @@ body{
 	border-color: #ac2925;
 }
 .lookRecruitDetailed{	
-	clear:both;
-	display: block;
+	margin-top:20px;
 }
 .applyRecruit{
-	float: right;
+	margin-top:10px;
 }
-.callSchool{
-	float: right;
-}
+
 .addPost{
 	margin-top:20px;
 	margin-left:100px;
@@ -378,7 +376,7 @@ body{
 	position: absolute;
 	z-index:2;
 	height:128px;
-	width:300px;
+	width:150px;
 	top:0;
 	right:0;
 	border:1px #ccc solid;

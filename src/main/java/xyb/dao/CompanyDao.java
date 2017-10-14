@@ -8,6 +8,7 @@ import xyb.entity.HasPost;
 import xyb.entity.HasRecruit;
 import xyb.entity.Post;
 import xyb.entity.Recruit;
+import xyb.entity.SchoolInfo;
 import xyb.entity.StudentInfo;
 import xyb.entity.User;
 
@@ -51,4 +52,6 @@ public interface CompanyDao {
 	public List<Contact> getContacts(User sendUser, User receiveUser);
 
 	public void sendContacts(Contact contact);
+
+	public SchoolInfo getSchoolInfoById(Integer schoolId);
 }

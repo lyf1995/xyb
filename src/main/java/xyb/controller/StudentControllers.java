@@ -490,7 +490,10 @@ public class StudentControllers {
 		CompanyInfo companyInfo=this.studentService.getCompanyInfoById(receiveId);
 		User receiveUser=this.studentService.getUser(companyInfo.getUsername(),2);
 		List<Contact> contacts=this.studentService.getContacts(sendUser,receiveUser);
-		
+		for(int i=0;i<contacts.size();i++){
+			contacts.get(i).setSendPic(studentInfo.getPicture());
+			contacts.get(i).setReceivePic(companyInfo.getComLogo());
+		}
 		return contacts;
 		
 	}
@@ -508,6 +511,6 @@ public class StudentControllers {
 		contact.setSendUser(sendUser);
 		contact.setReceiveUser(receiveUser);
 		this.studentService.sendContacts(contact);
-		return null;
+		return studentInfo.getPicture();
 	}
 }

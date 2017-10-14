@@ -170,17 +170,23 @@ $(function(){
 					if(item.sendUserId==userId){
 						var div=$('<div></div>');
 						div.addClass('clearfix');
-						var span=$('<span>'+item.content+'：我说</span>');
+						var span=$('<span>'+item.content+'</span>');
 						span.addClass('modal-right');
 						div.append(span);
+						var img=$('<img src="'+item.sendPic+'"/>');
+						img.addClass('img-right');
+						span.before(img);
 						$('.modal-body').append(div);
 					}
 					else{
 						var div=$('<div></div>');
 						div.addClass('clearfix');
-						var span=$('<span>他说：'+item.content+'</span>');
+						var span=$('<span>'+item.content+'</span>');
 						span.addClass('modal-left');
 						div.append(span);
+						var img=$('<img src="'+item.receivePic+'"/>');
+						img.addClass('img-left');
+						span.before(img);
 						$('.modal-body').append(div);
 					}
 				});
@@ -202,20 +208,23 @@ $(function(){
 		$.ajax({
 			url:'sendContacts.html',
 			type:'POST',
+			dataType:'json',
 			data:{'sendId':stuId,'receiveId':comId,'content':content},
 			success:function(data){
 				var div=$('<div></div>');
 				div.addClass('clearfix');
-				var span=$('<span>'+content+'：我说</span>');
+				var span=$('<span>'+content+'</span>');
 				span.addClass('modal-right');
 				div.append(span);
+				var img=$('<img src="'+data+'"/>');
+				img.addClass('img-right');
+				span.before(img);
 				$('.modal-body').append(div);
 				$('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
 				$('#content').val('');
 			}
 		});
-		
-		
+
 	});
 	
 });

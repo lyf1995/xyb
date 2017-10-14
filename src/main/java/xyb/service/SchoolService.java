@@ -4,11 +4,13 @@ import java.text.ParseException;
 import java.util.List;
 
 import xyb.entity.CompanyInfo;
+import xyb.entity.Contact;
 import xyb.entity.HasRecruit;
 import xyb.entity.PostPojo;
 import xyb.entity.Recruit;
 import xyb.entity.RecruitPojo;
 import xyb.entity.SchoolInfo;
+import xyb.entity.User;
 
 public interface SchoolService {
 	public SchoolInfo login(String username, String password);
@@ -40,6 +42,12 @@ public interface SchoolService {
 	public PostPojo searchPostsDetailed(Integer postId);
 
 	public String recommendPost(Integer postId, SchoolInfo schoolInfo);
+
+	public User getUser(String username, int type);
+
+	public List<Contact> getContacts(User sendUser, User receiveUser);
+
+	public void sendContacts(Contact contact);
 
 	
 }

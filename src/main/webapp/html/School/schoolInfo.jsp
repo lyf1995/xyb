@@ -48,7 +48,7 @@
 			</div>
 			<div class="logo-right clearfix">
 				<ul id="logo-right-ul" class="clearfix">
-					<li><a href="Internship.html">实习计划</a></li>
+					<!-- <li><a href="Internship.html">实习计划</a></li> -->
 					<li><a href="searchPost.html">查看岗位</a></li>
 					<li><a href="schoolRecruit.html">我的校招</a></li>
 				</ul>

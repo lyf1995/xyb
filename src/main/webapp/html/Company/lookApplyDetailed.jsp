@@ -33,7 +33,6 @@
 			</div>
 			<div class="modal-body clearfix">
 				<div class="clearfix">
-					<span class="modal-left">你好，我是${studentInfo.relName }</span>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -253,8 +252,6 @@
 									<c:if test="${stXmjy.itemEndMonth>=10}">${stXmjy.itemEndMonth}</c:if>
 									<c:if test="${stXmjy.itemEndMonth<10}">0${stXmjy.itemEndMonth}</c:if>
 								</span>
-								<span class="inline-xiugai1"> 修改</span>
-								<span class="inline-shanchu1"> 删除</span>
 							</div>
 							<div class="line-50">
 								<span>项目职责：</span><span class="show-itemDuty isCreate">${stXmjy.itemDuty}</span>
@@ -290,8 +287,6 @@
 									<c:if test="${stXnzw.dutyEndMonth>=10}">${stXnzw.dutyEndMonth}</c:if>
 									<c:if test="${stXnzw.dutyEndMonth<10}">0${stXnzw.dutyEndMonth}</c:if>
 								</span>
-								<span class="inline-xiugai2"> 修改</span>
-								<span class="inline-shanchu2"> 删除</span>
 							</div>
 							<div class="line-100">
 								<span>职务描述：</span>
@@ -326,8 +321,6 @@
 								<span class="show-lgDX isCreate">${stYynl.lgDX }</span>
 							</div>
 							<div class="line-10">
-								<span class="inline-xiugai3">修改</span>
-								<span class="inline-shanchu3"> 删除</span>
 							</div>
 						</div>
 					</c:forEach>

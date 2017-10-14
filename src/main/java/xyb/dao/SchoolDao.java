@@ -3,11 +3,13 @@ package xyb.dao;
 import java.util.List;
 
 import xyb.entity.CompanyInfo;
+import xyb.entity.Contact;
 import xyb.entity.HasRecruit;
 import xyb.entity.Post;
 import xyb.entity.RecPost;
 import xyb.entity.Recruit;
 import xyb.entity.SchoolInfo;
+import xyb.entity.User;
 
 public interface SchoolDao {
 	public SchoolInfo login(String username,String password);
@@ -41,5 +43,11 @@ public interface SchoolDao {
 	public RecPost hasRecommendPost(Integer postId, Integer schoolId);
 
 	public void recommendPost(RecPost recPost);
+
+	public User getUser(String username, int type);
+
+	public List<Contact> getContacts(User sendUser, User receiveUser);
+
+	public void sendContacts(Contact contact);
 
 }		

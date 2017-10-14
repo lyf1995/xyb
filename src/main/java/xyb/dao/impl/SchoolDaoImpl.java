@@ -9,11 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import xyb.dao.SchoolDao;
 import xyb.entity.CompanyInfo;
+import xyb.entity.Contact;
 import xyb.entity.HasRecruit;
 import xyb.entity.Post;
 import xyb.entity.RecPost;
 import xyb.entity.Recruit;
 import xyb.entity.SchoolInfo;
+import xyb.entity.User;
 
 @Repository
 @Transactional
@@ -111,6 +113,20 @@ public class SchoolDaoImpl implements SchoolDao{
 	}
 	public void recommendPost(RecPost recPost) {
 		sessionFactory.getCurrentSession().save(recPost);
+	}
+	public User getUser(String username, int type) {
+		String hql="from User user where user.username="+username+"and user.type="+type;
+		User user=(User)sessionFactory.getCurrentSession().createQuery(hql).uniqueResult();
+		return user;
+	}
+	public List<Contact> getContacts(User sendUser, User receiveUser) {
+		String hql="from Contact contact where contact.sendUser.id="+sendUser.getId()+" and contact.receiveUser.id="+receiveUser.getId()+"or contact.sendUser.id="+receiveUser.getId()+"and contact.receiveUser.id="+sendUser.getId()+" order by contact.time asc";
+		@SuppressWarnings("unchecked")
+		List<Contact> contacts=(List<Contact>)sessionFactory.getCurrentSession().createQuery(hql).list();
+		return contacts;
+	}
+	public void sendContacts(Contact contact) {
+		sessionFactory.getCurrentSession().save(contact);
 	}
 	
 }

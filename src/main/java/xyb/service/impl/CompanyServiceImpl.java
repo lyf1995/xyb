@@ -21,6 +21,7 @@ import xyb.entity.Post;
 import xyb.entity.PostPojo;
 import xyb.entity.Recruit;
 import xyb.entity.RecruitPojo;
+import xyb.entity.SchoolInfo;
 import xyb.entity.StudentInfo;
 import xyb.entity.User;
 import xyb.service.CompanyService;
@@ -145,6 +146,11 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 	public HasPost getHasPostByDoubleId(Integer studentId, Integer postId) {
 		HasPost hasPost=this.companyDao.getHasPostByDoubleId(studentId,postId);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		int sendTime=hasPost.getSendTime();
+		Date date = new Date(sendTime* 1000L);
+		String sendTimeStr = simpleDateFormat.format(date);
+		hasPost.setSendTimeStr(sendTimeStr);
 		return hasPost;
 	}
 	public Recruit companyRecruitDetailed(Integer recruitId) {
@@ -259,6 +265,10 @@ public class CompanyServiceImpl implements CompanyService{
 		contact.setTime(time);
 		
 		this.companyDao.sendContacts(contact);
+	}
+	public SchoolInfo getSchoolInfoById(Integer schoolId) {
+		SchoolInfo schoolInfo=this.companyDao.getSchoolInfoById(schoolId);
+		return schoolInfo;
 	}
 	
 	

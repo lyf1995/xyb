@@ -21,24 +21,23 @@
 </head>
 <body>
 <!--聊天模态框-->
+<input id="userId" type="hidden" value="${user.id }">
+<input id="schId" type="hidden" value="${schoolInfo.id }">
+<input id="comId" type="hidden" value="${companyInfo.id }">
 <div class="modal fade" id="myModal" tabindex="-1" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				浙江互联网科技有限公司
+				${postPojo.comName }
 			    <button class="close" data-dismiss="modal"><span style="font-size:40px;">&times;</span></button>
 			</div>
 			<div class="modal-body clearfix">
-				<div class="modal-left">
-					他说：你好，这里是浙江互联网科技有限公司。
-				</div>
-				<div class="modal-right">
-					我说：你好，我想问问你们公司招人的具体情况。
+				<div class="clearfix">
 				</div>
 			</div>
 			<div class="modal-footer">
-				<textarea class="modalTextarea"></textarea>
-				<button class="btn btn-danger">发送</button>
+				<textarea id="content" class="modalTextarea form-control"></textarea>
+				<button id="send" class="btn btn-danger">发送</button>
 			</div>
 		</div>
 	</div>
@@ -77,7 +76,7 @@
 			</div>
 			<div class="logo-right clearfix">
 				<ul id="logo-right-ul" class="clearfix">
-					<li><a href="Internship.html">实习计划</a></li>
+					<!-- <li><a href="Internship.html">实习计划</a></li> -->
 					<li><a href="searchPost.html">查看岗位</a></li>
 					<li><a href="schoolRecruit.html">我的校招</a></li>
 				</ul>
@@ -97,7 +96,7 @@
 		<div class="status clearfix">
 			<button id="agree" class="btn btn-danger" data-companyid="${companyInfo.id }" data-recruitid="${recruitId }">同意对接</button>
 			<button id="Inappropriate" class="btn btn-danger" data-companyid="${companyInfo.id }" data-recruitid="${recruitId }">不合适</button>
-			<button id="callPerson" class="btn btn-danger" data-toggle="modal" data-target="#myModal">联系公司</button>
+			<button id="callCompany" class="btn btn-danger" data-toggle="modal" data-target="#myModal">联系公司</button>
 			<button id="return" class="btn btn-danger" data-recruitid="${recruitId }">返回</a>
 		</div>
 		<hr>

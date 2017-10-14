@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import xyb.dao.SchoolDao;
 import xyb.entity.CompanyInfo;
+import xyb.entity.Contact;
 import xyb.entity.HasRecruit;
 import xyb.entity.Post;
 import xyb.entity.PostPojo;
@@ -21,6 +22,7 @@ import xyb.entity.RecPost;
 import xyb.entity.Recruit;
 import xyb.entity.RecruitPojo;
 import xyb.entity.SchoolInfo;
+import xyb.entity.User;
 import xyb.service.SchoolService;
 
 @Service
@@ -173,6 +175,11 @@ public class SchoolServiceImpl implements SchoolService{
 	}
 	public HasRecruit getHasRecruitByDoubleId(Integer companyInfoId, Integer recruitId) {
 		HasRecruit hasRecruit=this.schoolDao.getHasRecruitByDoubleId(companyInfoId,recruitId);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		int sendTime=hasRecruit.getSendTime();
+		Date date = new Date(sendTime* 1000L);
+		String sendTimeStr = simpleDateFormat.format(date);
+		hasRecruit.setSendTimeStr(sendTimeStr);
 		return hasRecruit;
 	}
 	public void recruitStatus(Integer companyInfoId, Integer recruitId, String status) {
@@ -186,6 +193,7 @@ public class SchoolServiceImpl implements SchoolService{
 		postPojo.setComContacts(post.getCompanyInfo().getComContacts());
 		postPojo.setComName(post.getCompanyInfo().getComName());
 		postPojo.setComEmail(post.getCompanyInfo().getComEmail());
+		postPojo.setComId(post.getCompanyInfo().getId());
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		int postTime=postPojo.getPostTime();
 		Date date = new Date(postTime* 1000L);
@@ -221,6 +229,39 @@ public class SchoolServiceImpl implements SchoolService{
 			status="您已经推荐过该岗位，请不要重复推荐";
 		}
 		return status;
+	}
+	public User getUser(String username, int type) {
+		User user=this.schoolDao.getUser(username,type);
+		return user;
+	}
+	public List<Contact> getContacts(User sendUser, User receiveUser) {
+		List<Contact> contacts=this.schoolDao.getContacts(sendUser,receiveUser);
+		for(int i=0;i<contacts.size();i++){
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			int time=contacts.get(i).getTime();	
+			Date date = new Date(time* 1000L);
+			String timeStr = simpleDateFormat.format(date);
+			contacts.get(i).setTimeStr(timeStr);
+			contacts.get(i).setSendUserId(contacts.get(i).getSendUser().getId());
+			contacts.get(i).setReceiveUserId(contacts.get(i).getReceiveUser().getId());
+		}
+		return contacts;
+	}
+	public void sendContacts(Contact contact) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String timeStr=simpleDateFormat.format(new Date());
+		contact.setTimeStr(timeStr);
+		Date date = null;
+		try {
+			date = simpleDateFormat.parse(timeStr);
+		} catch (ParseException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		int time = (int) (date.getTime()/1000);
+		contact.setTime(time);
+		
+		this.schoolDao.sendContacts(contact);
 	}
 	
 }

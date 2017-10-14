@@ -20,29 +20,6 @@
 	<script src="../../loading/js/loading.js"></script>
 </head>
 <body>
-<!--聊天模态框-->
-<div class="modal fade" id="myModal" tabindex="-1" data-backdrop="static">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				浙江互联网科技有限公司
-			    <button class="close" data-dismiss="modal"><span style="font-size:40px;">&times;</span></button>
-			</div>
-			<div class="modal-body clearfix">
-				<div class="modal-left">
-					他说：你好，这里是浙江互联网科技有限公司。
-				</div>
-				<div class="modal-right">
-					我说：你好，我想问问你们公司招人的具体情况。
-				</div>
-			</div>
-			<div class="modal-footer">
-				<textarea class="modalTextarea"></textarea>
-				<button class="btn btn-danger">发送</button>
-			</div>
-		</div>
-	</div>
-</div>
 <!--dialog弹出框-->
 <div id="btn-dialogBox"></div>
 <header>
@@ -108,7 +85,6 @@
 				<div class="operation-show clearfix">
 					<a href="javascript:;" class="a-danger a-big applyRecruit">申请校招</a>
 					<a href="companyRecruitDetailed.html?recruitId=${recruitPojo.id }" class="a-danger a-big lookRecruitDetailed">查看详情</a>
-					<a href="javascript:;" class="a-danger a-big callSchool" data-toggle="modal" data-target="#myModal">联系院校</a>
 				</div>
 				<div class="recruit-logo">
 					<c:choose>  

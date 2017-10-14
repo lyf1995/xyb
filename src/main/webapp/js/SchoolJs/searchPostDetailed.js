@@ -63,27 +63,6 @@ $(function(){
 		}
 	);
 
-	//ajax加载时显示
-	$(document).ajaxStart(function(){
-		$('body').loading({
-			loadingWidth:240,
-			title:'请稍等!',
-			name:'test',
-			discription:'',
-			direction:'column',
-			type:'origin',
-			// originBg:'#71EA71',
-			originDivWidth:40,
-			originDivHeight:40,
-			originWidth:6,
-			originHeight:6,
-			smallLoading:false,
-			loadingMaskBg:'rgba(0,0,0,0.2)'
-		});
-	}).ajaxStop(function(){
-		removeLoading('test');
-	});
-	
 	//弹出dialog
 	$('#recommendPost').click(function(){
 		var postId=$(this).data('postid');
@@ -101,7 +80,27 @@ $(function(){
 						dataType:'json',
 						success:function(data){
 							alert(data);
-						}
+						},
+						beforeSend:function(){
+							$('body').loading({
+								loadingWidth:240,
+								title:'请稍等!',
+								name:'test',
+								discription:'',
+								direction:'column',
+								type:'origin',
+								// originBg:'#71EA71',
+								originDivWidth:40,
+								originDivHeight:40,
+								originWidth:6,
+								originHeight:6,
+								smallLoading:false,
+								loadingMaskBg:'rgba(0,0,0,0.2)'
+							});
+						},
+						complete : function(){
+							removeLoading('test');
+				        }
 						
 					});
 				},
@@ -127,4 +126,82 @@ $(function(){
 	showInfo("gwfl");
 	showInfo("gwzz");
 	showInfo("gwyq");
+	
+	
+//在线聊天
+	
+	var userId=$('#userId').val();
+	var schId=$('#schId').val();
+	var comId=$('#comId').val();
+	
+	
+	function getContact(){
+		console.log('userId:'+userId+'schId:'+schId+'comId:'+comId);
+		$.ajax({
+			url:'getContacts.html',
+			type:'GET',
+			dataType:'json',
+			data:{'sendId':schId,'receiveId':comId},
+			success:function(data){
+				$('.modal-body').empty();
+				$.each(data,function(i,item){
+					if(item.sendUserId==userId){
+						var div=$('<div></div>');
+						div.addClass('clearfix');
+						var span=$('<span>'+item.content+'</span>');
+						span.addClass('modal-right');
+						div.append(span);
+						var img=$('<img src="'+item.sendPic+'"/>');
+						img.addClass('img-right');
+						span.before(img);
+						$('.modal-body').append(div);
+					}
+					else{
+						var div=$('<div></div>');
+						div.addClass('clearfix');
+						var span=$('<span>'+item.content+'</span>');
+						span.addClass('modal-left');
+						div.append(span);
+						var img=$('<img src="'+item.receivePic+'"/>');
+						img.addClass('img-left');
+						span.before(img);
+						$('.modal-body').append(div);
+					}
+				});
+				$('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
+			}
+		});
+	};
+	var interval=null;
+	$('#callCompany').on('click',function(){
+		getContact();
+		interval=setInterval(getContact,1000);
+	});
+	$('.close').on('click',function(){
+		clearInterval(interval);
+	});
+
+	$('#send').on('click',function(){
+		var content=$('#content').val();
+		$.ajax({
+			url:'sendContacts.html',
+			type:'POST',
+			dataType:'json',
+			data:{'sendId':schId,'receiveId':comId,'content':content},
+			success:function(data){
+				var div=$('<div></div>');
+				div.addClass('clearfix');
+				var span=$('<span>'+content+'</span>');
+				span.addClass('modal-right');
+				div.append(span);
+				var img=$('<img src="'+data+'"/>');
+				img.addClass('img-right');
+				span.before(img);
+				$('.modal-body').append(div);
+				$('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
+				$('#content').val('');
+			}
+		});
+	});
+	
 });

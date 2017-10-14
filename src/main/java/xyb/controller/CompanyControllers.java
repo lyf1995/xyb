@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -36,13 +37,16 @@ import xyb.entity.Post;
 import xyb.entity.PostPojo;
 import xyb.entity.Recruit;
 import xyb.entity.RecruitPojo;
+import xyb.entity.SchoolInfo;
 import xyb.entity.StudentInfo;
 import xyb.entity.User;
 import xyb.service.CompanyService;
+import xyb.util.MailUtil;
 
 @Controller
 @RequestMapping("/html/Company")
 public class CompanyControllers {
+	@Autowired MailUtil mailUtil;
 	@Autowired
 	private CompanyService companyService;
 	public CompanyService getCompanyService() {
@@ -58,6 +62,11 @@ public class CompanyControllers {
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
+	@RequestMapping("/login")
+	public String login()
+	{
+		return "login";
+	}
 	//公司信息
 	@RequestMapping(value="companyInfo",method=RequestMethod.GET)
 	public ModelAndView companyInfo(HttpSession httpSession)
@@ -249,6 +258,11 @@ public class CompanyControllers {
 	public HasPost PostStatus(Integer studentId,Integer postId,String postStatus){
 		this.companyService.postStatus(studentId, postId, postStatus);
 		HasPost hasPost=this.companyService.getHasPostByDoubleId(studentId,postId);
+		String comName=hasPost.getPost().getCompanyInfo().getComName();
+		String sendTime=hasPost.getSendTimeStr();
+		String postName=hasPost.getPost().getPostName();
+		String toMail=hasPost.getStudentInfo().getEmail();
+		mailUtil.sendMail(toMail, "校企合作平台", "您在"+sendTime+"投递的"+'"'+comName+'"'+"公司的岗位"+'"'+postName+'"'+"的当前简历状态为："+postStatus);
 		return hasPost;
 	}
 	
@@ -258,8 +272,10 @@ public class CompanyControllers {
 		ModelAndView mav=new ModelAndView();
 		Recruit recruit=this.companyService.companyRecruitDetailed(recruitId);
 		
-		
+		CompanyInfo companyInfo=(CompanyInfo)httpSession.getAttribute("companyInfo");
+        User user=this.companyService.getUser(companyInfo.getUsername(),2);
 		mav.addObject("recruit",recruit);
+		mav.addObject("user",user);
 		mav.setViewName("/html/Company/companyRecruitDetailed");
 		return mav;
 	}
@@ -308,12 +324,30 @@ public class CompanyControllers {
 	//获取聊天记录
 	@RequestMapping(value="getContacts",method=RequestMethod.GET)
 	@ResponseBody
-	public List<Contact> getContacts(HttpSession httpSession,Integer sendId,Integer receiveId){
+	public List<Contact> getContacts(HttpSession httpSession,Integer sendId,Integer receiveId,Integer type){
 		CompanyInfo companyInfo=(CompanyInfo)httpSession.getAttribute("companyInfo");
 		User sendUser=this.companyService.getUser(companyInfo.getUsername(),2);
-		StudentInfo studentInfo=this.companyService.getStudentInfoById(receiveId);
-		User receiveUser=this.companyService.getUser(studentInfo.getUsername(),1);
-		List<Contact> contacts=this.companyService.getContacts(sendUser,receiveUser);
+		List<Contact> contacts=new ArrayList<Contact>();
+		User receiveUser=new User();
+		if(type==1){
+			StudentInfo studentInfo=this.companyService.getStudentInfoById(receiveId);
+			receiveUser=this.companyService.getUser(studentInfo.getUsername(),1);
+			contacts=this.companyService.getContacts(sendUser,receiveUser);
+			for(int i=0;i<contacts.size();i++){
+				contacts.get(i).setSendPic(companyInfo.getComLogo());
+				contacts.get(i).setReceivePic(studentInfo.getPicture());
+			}
+		}
+		else{
+			SchoolInfo schoolInfo=this.companyService.getSchoolInfoById(receiveId);
+			receiveUser=this.companyService.getUser(schoolInfo.getUsername(),3);
+			contacts=this.companyService.getContacts(sendUser,receiveUser);
+			for(int i=0;i<contacts.size();i++){
+				contacts.get(i).setSendPic(companyInfo.getComLogo());
+				contacts.get(i).setReceivePic(schoolInfo.getSchLogo());
+			}
+		}
+		
 		return contacts;
 		
 	}
@@ -321,17 +355,29 @@ public class CompanyControllers {
 	//添加聊天记录
 	@RequestMapping(value="sendContacts",method=RequestMethod.POST)
 	@ResponseBody
-	public String sendContacts(HttpSession httpSession,Integer sendId,Integer receiveId,String content){
+	public String sendContacts(HttpSession httpSession,Integer sendId,Integer receiveId,String content,Integer type){
 		CompanyInfo companyInfo=(CompanyInfo)httpSession.getAttribute("companyInfo");
 		User sendUser=this.companyService.getUser(companyInfo.getUsername(),2);
-		StudentInfo studentInfo=this.companyService.getStudentInfoById(receiveId);
-		User receiveUser=this.companyService.getUser(studentInfo.getUsername(),1);
-		Contact contact=new Contact();
-		contact.setContent(content);
-		contact.setSendUser(sendUser);
-		contact.setReceiveUser(receiveUser);
-		this.companyService.sendContacts(contact);
-		return null;
+		if(type==1){
+			StudentInfo studentInfo=this.companyService.getStudentInfoById(receiveId);
+			User receiveUser=this.companyService.getUser(studentInfo.getUsername(),1);
+			Contact contact=new Contact();
+			contact.setContent(content);
+			contact.setSendUser(sendUser);
+			contact.setReceiveUser(receiveUser);
+			this.companyService.sendContacts(contact);
+		}
+		else{
+			SchoolInfo schoolInfo=this.companyService.getSchoolInfoById(receiveId);
+			User receiveUser=this.companyService.getUser(schoolInfo.getUsername(),3);
+			Contact contact=new Contact();
+			contact.setContent(content);
+			contact.setSendUser(sendUser);
+			contact.setReceiveUser(receiveUser);
+			this.companyService.sendContacts(contact);
+		}
+		
+		return companyInfo.getComLogo();
 	}
    
 }

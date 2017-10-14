@@ -32,7 +32,7 @@
 	    		<img src="../../images/info.PNG" alt="">
 	    		<span>消息</span>
 	    	</a>
-	    	<a class="a-set out" href="personInfo.html">
+	    	<a class="a-set out" href="studentInfo.html">
 	    		<img src="../../images/set.PNG" alt="">
 	    	 	<span>设置</span>
 	    	</a>
@@ -87,7 +87,14 @@
 					<a href="javascript:;" class="a-danger a-big postResume">投递简历</a>
 				</div>
 				<div class="company-logo">
-					<img src="../../images/companyLogo.jpg" alt="企业Logo">
+					<c:choose>  
+						<c:when test="${empty post.companyInfo.comLogo}">
+							<img id="post-show-comLogo" src="../../images/defalut.png" alt="企业logo">
+						</c:when>  
+						<c:otherwise>
+							<img id="post-show-comLogo" src="${post.companyInfo.comLogo }" alt="企业logo">
+						</c:otherwise>  
+					</c:choose> 
 				</div>
 				<div class="post-show-top">
 					<div class="post-show-name">${post.postName }</div>

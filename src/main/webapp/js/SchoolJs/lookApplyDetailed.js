@@ -75,26 +75,6 @@ $(function(){
 		}
 	});
 
-	$(document).ajaxStart(function(){
-		$('body').loading({
-			loadingWidth:240,
-			title:'请稍等!',
-			name:'test',
-			discription:'',
-			direction:'column',
-			type:'origin',
-			// originBg:'#71EA71',
-			originDivWidth:40,
-			originDivHeight:40,
-			originWidth:6,
-			originHeight:6,
-			smallLoading:false,
-			loadingMaskBg:'rgba(0,0,0,0.2)'
-		});
-	}).ajaxStop(function(){
-		removeLoading('test');
-	});
-
 	//返回
 	$('#return').on('click',function(){
 		var recruitId=$(this).data('recruitid');
@@ -112,10 +92,35 @@ $(function(){
 			hasBtn: true,
 			confirmValue: '确定',
 			confirm:function(){
-				$.get('recruitStatus.html',{'recruitId':recruitId,'companyId':companyId,'recruitStatus':'同意对接'},
-					function(data){
-					$('#nowRecruitStatus').html('公司状态：'+data.status);
-					alert('设置成功');
+				$.ajax({
+					url:'recruitStatus.html',
+					type:'GET',
+					dataType:'json',
+					data:{'recruitId':recruitId,'companyId':companyId,'recruitStatus':'同意对接'},
+					success:function(data){
+						$('#nowRecruitStatus').html('公司状态：'+data.status);
+						alert('设置成功');
+					},
+					beforeSend:function(){
+						$('body').loading({
+							loadingWidth:240,
+							title:'请稍等!',
+							name:'test',
+							discription:'',
+							direction:'column',
+							type:'origin',
+							// originBg:'#71EA71',
+							originDivWidth:40,
+							originDivHeight:40,
+							originWidth:6,
+							originHeight:6,
+							smallLoading:false,
+							loadingMaskBg:'rgba(0,0,0,0.2)'
+						});
+					},
+					complete : function(){
+						removeLoading('test');
+			        }
 				});
 			},
 			cancelValue: '取消',
@@ -139,11 +144,37 @@ $(function(){
 			hasBtn: true,
 			confirmValue: '确定',
 			confirm:function(){
-				$.get('recruitStatus.html',{'recruitId':recruitId,'companyId':companyId,'recruitStatus':'不合适'},
-						function(data){
+				$.ajax({
+					url:'recruitStatus.html',
+					type:'GET',
+					datatype:'json',
+					data:{'recruitId':recruitId,'companyId':companyId,'recruitStatus':'不合适'},
+					success:function(data){
 						$('#nowRecruitStatus').html('公司状态：'+data.status);
 						alert('设置成功');
-					});
+					},
+					beforeSend:function(){
+						$('body').loading({
+							loadingWidth:240,
+							title:'请稍等!',
+							name:'test',
+							discription:'',
+							direction:'column',
+							type:'origin',
+							// originBg:'#71EA71',
+							originDivWidth:40,
+							originDivHeight:40,
+							originWidth:6,
+							originHeight:6,
+							smallLoading:false,
+							loadingMaskBg:'rgba(0,0,0,0.2)'
+						});
+					},
+					complete : function(){
+						removeLoading('test');
+			        }
+				});
+				
 			},
 			cancelValue: '取消',
 			cancel:function(){
@@ -151,6 +182,83 @@ $(function(){
 			},
 			title: '注意',
 			content: '确定是否将该公司设置为不合适？'
+		});
+	});
+	
+	
+//在线聊天
+	
+	var userId=$('#userId').val();
+	var schId=$('#schId').val();
+	var comId=$('#comId').val();
+	
+	
+	function getContact(){
+		console.log('userId:'+userId+'schId:'+schId+'comId:'+comId);
+		$.ajax({
+			url:'getContacts.html',
+			type:'GET',
+			dataType:'json',
+			data:{'sendId':schId,'receiveId':comId},
+			success:function(data){
+				$('.modal-body').empty();
+				$.each(data,function(i,item){
+					if(item.sendUserId==userId){
+						var div=$('<div></div>');
+						div.addClass('clearfix');
+						var span=$('<span>'+item.content+'</span>');
+						span.addClass('modal-right');
+						div.append(span);
+						var img=$('<img src="'+item.sendPic+'"/>');
+						img.addClass('img-right');
+						span.before(img);
+						$('.modal-body').append(div);
+					}
+					else{
+						var div=$('<div></div>');
+						div.addClass('clearfix');
+						var span=$('<span>'+item.content+'</span>');
+						span.addClass('modal-left');
+						div.append(span);
+						var img=$('<img src="'+item.receivePic+'"/>');
+						img.addClass('img-left');
+						span.before(img);
+						$('.modal-body').append(div);
+					}
+				});
+				$('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
+			}
+		});
+	};
+	var interval=null;
+	$('#callCompany').on('click',function(){
+		getContact();
+		interval=setInterval(getContact,1000);
+	});
+	$('.close').on('click',function(){
+		clearInterval(interval);
+	});
+
+	$('#send').on('click',function(){
+		var content=$('#content').val();
+		$.ajax({
+			url:'sendContacts.html',
+			type:'POST',
+			dataType:'json',
+			data:{'sendId':schId,'receiveId':comId,'content':content},
+			success:function(data){
+				var div=$('<div></div>');
+				div.addClass('clearfix');
+				var span=$('<span>'+content+'</span>');
+				span.addClass('modal-right');
+				div.append(span);
+				var img=$('<img src="'+data+'"/>');
+				img.addClass('img-right');
+				span.before(img);
+				$('.modal-body').append(div);
+				$('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
+				$('#content').val('');
+			}
 		});
 	});
 });

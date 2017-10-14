@@ -32,7 +32,7 @@
 	    		<img src="../../images/info.PNG" alt="">
 	    		<span>消息</span>
 	    	</a>
-	    	<a class="a-set out" href="personInfo.html">
+	    	<a class="a-set out" href="studentInfo.html">
 	    		<img src="../../images/set.PNG" alt="">
 	    	 	<span>设置</span>
 	    	</a>

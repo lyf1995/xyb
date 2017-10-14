@@ -351,19 +351,56 @@ body{
 }
 
 
-/*鑱婂ぉ妯℃�妗�/
+/* 聊天模态框 */
 .modal-body{
 	height:300px;
 	overflow: auto;
 }
+.modal-body div{
+	margin-bottom:20px;
+}
+.modal-body span{
+	display:block;
+}
+.img-left{
+	float:left;
+	width:50px;
+	height:50px;
+	border-radius:50px;
+	margin-left:10px;
+	margin-right:10px;
+	box-shadow: 0 0 5px 2px #ccc;
+}
+.img-right{
+	float:right;
+	width:50px;
+	height:50px;
+	border-radius:50px;
+	margin-left:10px;
+	box-shadow: 0 0 5px 2px #ccc;
+}
+.img-right span{
+	text-alig
+}
 .modal-left{
 	float:left;
-	margin-top:20px;
+	margin-top:10px;
+	padding:10px;
+	border-radius:5px;
+	background:#ffb9d6;
+	max-width:75%;
+	word-break: break-all;
 }
 .modal-right{
 	float:right;
-	margin-top:20px;
+	margin-top:10px;
+	padding:10px;
+	border-radius:5px;
+	background:#ace4fb;
+	max-width:75%;
+	word-break: break-all;
 }
+
 .modalTextarea{
 	float:left;
 	width:100%;

@@ -11,6 +11,7 @@ xyb\entity\PostPojo.class
 xyb\service\UserService.class
 xyb\service\impl\CompanyServiceImpl.class
 xyb\entity\Contact.class
+xyb\util\MailUtil.class
 xyb\dao\impl\StudentDaoImpl.class
 xyb\entity\HasRecruit.class
 xyb\dao\UserDao.class

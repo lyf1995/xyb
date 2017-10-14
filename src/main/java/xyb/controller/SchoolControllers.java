@@ -23,16 +23,22 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import xyb.entity.CompanyInfo;
+import xyb.entity.Contact;
 import xyb.entity.HasRecruit;
 import xyb.entity.PostPojo;
 import xyb.entity.Recruit;
 import xyb.entity.RecruitPojo;
 import xyb.entity.SchoolInfo;
+import xyb.entity.StudentInfo;
+import xyb.entity.User;
 import xyb.service.SchoolService;
+import xyb.util.MailUtil;
 
 @Controller
 @RequestMapping("/html/School")
 public class SchoolControllers {
+	@Autowired
+	private MailUtil mailUtil;
 	@Autowired
 	private SchoolService schoolService;
 	public SchoolService getSchoolService() {
@@ -230,6 +236,9 @@ public class SchoolControllers {
 		}
 		HasRecruit nowHasRecruit=this.schoolService.getHasRecruitByDoubleId(companyInfoId,recruitId);
 		
+		SchoolInfo schoolInfo=(SchoolInfo)httpSession.getAttribute("schoolInfo");
+		User user=this.schoolService.getUser(schoolInfo.getUsername(),3);
+		mav.addObject("user",user);
 		mav.addObject("companyInfo",companyInfo);
 		mav.addObject("recruitId",recruitId);
 		mav.addObject("nowHasRecruit",nowHasRecruit);
@@ -244,6 +253,11 @@ public class SchoolControllers {
 	public HasRecruit hasRecruit(Integer companyId,Integer recruitId,String recruitStatus){
 		this.schoolService.recruitStatus(companyId, recruitId, recruitStatus);
 		HasRecruit hasRecruit=this.schoolService.getHasRecruitByDoubleId(companyId,recruitId);
+		String toMail=hasRecruit.getCompanyInfo().getComEmail();
+		String sendTime=hasRecruit.getSendTimeStr();
+		String schName=hasRecruit.getRecruit().getSchoolInfo().getSchName();
+		String recruitName=hasRecruit.getRecruit().getRecruitName();
+		mailUtil.sendMail(toMail, "校企合作平台", "您在"+sendTime+"投递的"+'"'+schName+'"'+"学校的校招"+'"'+recruitName+'"'+"的当前状态为："+recruitStatus);
 		return hasRecruit;
 	}
 
@@ -252,7 +266,9 @@ public class SchoolControllers {
 	public ModelAndView searchPostsDetailed(Integer postId,HttpSession httpSession){
 		ModelAndView mav=new ModelAndView("/html/School/searchPostDetailed");
 		PostPojo postPojo=this.schoolService.searchPostsDetailed(postId);
-		
+		SchoolInfo schoolInfo=(SchoolInfo)httpSession.getAttribute("schoolInfo");
+		User user=this.schoolService.getUser(schoolInfo.getUsername(),3);
+		mav.addObject("user",user);
 		mav.addObject("postPojo",postPojo);
 		return mav;
 	}
@@ -265,5 +281,38 @@ public class SchoolControllers {
 		String status=null;
 		status=this.schoolService.recommendPost(postId,schoolInfo);
 		return status;
+	}
+	
+	//获取聊天记录
+	@RequestMapping(value="getContacts",method=RequestMethod.GET)
+	@ResponseBody
+	public List<Contact> getContacts(HttpSession httpSession,Integer sendId,Integer receiveId){
+		SchoolInfo schoolInfo=(SchoolInfo)httpSession.getAttribute("schoolInfo");
+		User sendUser=this.schoolService.getUser(schoolInfo.getUsername(),3);
+		CompanyInfo companyInfo=this.schoolService.getCompanyInfoById(receiveId);
+		User receiveUser=this.schoolService.getUser(companyInfo.getUsername(),2);
+		List<Contact> contacts=this.schoolService.getContacts(sendUser,receiveUser);
+		for(int i=0;i<contacts.size();i++){
+			contacts.get(i).setSendPic(schoolInfo.getSchLogo());
+			contacts.get(i).setReceivePic(companyInfo.getComLogo());
+		}
+		return contacts;
+		
+	}
+			
+	//添加聊天记录
+	@RequestMapping(value="sendContacts",method=RequestMethod.POST)
+	@ResponseBody
+	public String sendContacts(HttpSession httpSession,Integer sendId,Integer receiveId,String content){
+		SchoolInfo schoolInfo=(SchoolInfo)httpSession.getAttribute("schoolInfo");
+		User sendUser=this.schoolService.getUser(schoolInfo.getUsername(),3);
+		CompanyInfo companyInfo=this.schoolService.getCompanyInfoById(receiveId);
+		User receiveUser=this.schoolService.getUser(companyInfo.getUsername(),2);
+		Contact contact=new Contact();
+		contact.setContent(content);
+		contact.setSendUser(sendUser);
+		contact.setReceiveUser(receiveUser);
+		this.schoolService.sendContacts(contact);
+		return schoolInfo.getSchLogo();
 	}
 }

@@ -26,6 +26,10 @@ public class Contact {
 	@Transient
 	private String timeStr;
 	@Transient
+	private String sendPic;
+	@Transient
+	private String receivePic;
+	@Transient
 	private int sendUserId;
 	@Transient
 	private int receiveUserId;
@@ -103,6 +107,22 @@ public class Contact {
 
 	public void setReceiveUserId(int receiveUserId) {
 		this.receiveUserId = receiveUserId;
+	}
+
+	public String getSendPic() {
+		return sendPic;
+	}
+
+	public void setSendPic(String sendPic) {
+		this.sendPic = sendPic;
+	}
+
+	public String getReceivePic() {
+		return receivePic;
+	}
+
+	public void setReceivePic(String receivePic) {
+		this.receivePic = receivePic;
 	}
 
 	

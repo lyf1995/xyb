@@ -2,9 +2,7 @@ package xyb.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +13,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import xyb.entity.CompanyInfo;
 import xyb.entity.SchoolInfo;
@@ -23,11 +21,14 @@ import xyb.entity.StudentInfo;
 import xyb.entity.User;
 import xyb.service.StudentService;
 import xyb.service.UserService;
+import xyb.util.MailUtil;
 import xyb.service.CompanyService;
 import xyb.service.SchoolService;
 
 @Controller
 public class UserControllers {
+	@Autowired
+    private MailUtil mailUtil;
 	@Autowired
 	private UserService userService;
 	public UserService getUserService() {
@@ -68,7 +69,7 @@ public class UserControllers {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 	@RequestMapping("/login")
-	public String index()
+	public String login()
 	{
 		return "login";
 	}
@@ -123,7 +124,17 @@ public class UserControllers {
 		}
 		return url;
 	  }
-
+	
+	  
+	 /* QQ邮箱发送测试*/
+	  @RequestMapping("/mail")
+	  @ResponseBody
+	  public String Mail(){
+		  System.out.println("aa");
+		  mailUtil.sendMail("2646926186@qq.com", "a", "b");
+		  System.out.println("bb");
+		  return "success";
+	  }
 
 	
 }

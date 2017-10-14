@@ -10,6 +10,7 @@ import xyb.entity.Post;
 import xyb.entity.PostPojo;
 import xyb.entity.Recruit;
 import xyb.entity.RecruitPojo;
+import xyb.entity.SchoolInfo;
 import xyb.entity.StudentInfo;
 import xyb.entity.User;
 
@@ -51,4 +52,6 @@ public interface CompanyService {
 	public List<Contact> getContacts(User sendUser, User receiveUser);
 
 	public void sendContacts(Contact contact);
+
+	public SchoolInfo getSchoolInfoById(Integer schoolId);
 }
