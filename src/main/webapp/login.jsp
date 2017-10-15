@@ -15,27 +15,41 @@
 </style>
 </head>
 <body>
-	<div class="login">
-	    <form id="login-form" action="login.html" method="post" autocomplete>
-	        <ul>
-	        	<li id="stu" class="on">我是学生</li>
-	        	<li id="tea" class="off">我是教师</li>
-	        	<li id="com" class="off">我是企业</li>
-	        </ul>
-	        <input type="hidden" id="loginType" name="type" value=1>		    
-	    	<div class="input-group input-group-defined login-input">
-				<label for="username" style="width:50px;" class="input-group-addon ">账号</label>
-				<input id="username" name="username" type="text" class="form-control" required style="width:250px;">
+<header>
+	<div class="header-1200">
+		<h1>校企招聘合作平台</h1>
+		<div class="header-right">
+			<span>欢迎登录</span>
+		</div>
+	</div>	
+</header>
+<div class="middle">
+	<div class="middle-1200">
+		<div class="middle-background">
+			<div class="login">
+			    <form id="login-form" action="login.html" method="post" autocomplete>
+			        <ul>
+			        	<li id="stu" class="on">我是学生</li>
+			        	<li id="tea" class="off">我是院校</li>
+			        	<li id="com" class="off">我是企业</li>
+			        </ul>
+			        <input type="hidden" id="loginType" name="type" value=1>
+			    	<div class="input-group input-group-defined login-input">
+						<label for="username" style="width:50px;" class="input-group-addon ">账号</label>
+						<input id="username" name="username" type="text" class="form-control" required style="width:250px;">
+					</div>
+					<div class="input-group input-group-defined login-input">
+						<label  for="password" style="width:50px;" class="input-group-addon">密码</label>
+						<input id="password" name="password" type="password" class="form-control" required style="width:250px;">
+					</div>
+					<button type="submit" class="btn btn-danger btn-login">登录</button>
+					<span>没账号？<a href=""#>快来注册</a></span>
+					<span><a href=""#>忘记密码</a></span>
+			    </form>
 			</div>
-		
-			<div class="input-group input-group-defined login-input">
-				<label  for="password" style="width:50px;" class="input-group-addon">密码</label>
-				<input id="password" name="password" type="password" class="form-control" required style="width:250px;">
-			</div>
-			<button type="submit" class="btn btn-danger btn-login">登录</button>
-			<span>没账号？<a href=""#>快来注册</a></span>
-			<span><a href=""#>忘记密码</a></span>		    		   
-	    </form>
+		</div>
 	</div>
+</div>
+
 </body>
 </html>

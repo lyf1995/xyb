@@ -399,9 +399,15 @@ body{
 	line-height:30px;
 	margin-top:10px;
 }
-.line-50{
+.line-40{
 	float: left;
 	width:40%;
+	line-height:30px;
+	margin-top:10px;
+}
+.line-50{
+	float: left;
+	width:50%;
 	line-height:30px;
 	margin-top:10px;
 }

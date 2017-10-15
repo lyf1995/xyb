@@ -140,35 +140,35 @@
 							</c:otherwise>  
 						</c:choose> 
 					</div>
-					<div class="line-50">
+					<div class="line-40">
 						<span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span>
 						<span id="show-name" class="isCreate">${studentInfo.relName}</span>
 					</div>
-					<div class="line-50">
+					<div class="line-40">
 						<span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</span>
 						<span id="show-sex" class="isCreate">${studentInfo.sex}</span>
 					</div>
-					<div class="line-50">
+					<div class="line-40">
 						<span>出生年月：</span>
 						<span id="show-birth" class="isCreate">${birth}</span>
 					</div>
-					<div class="line-50">
+					<div class="line-40">
 						<span>电话号码：</span>
 						<span id="show-tel" class="isCreate">${studentInfo.tel}</span>
 					</div>
-					<div class="line-50">
+					<div class="line-40">
 						<span>联系邮箱：</span>
 						<span id="show-email" class="isCreate">${studentInfo.email}</span>
 					</div>
-					<div class="line-50">
+					<div class="line-40">
 						<span>现居地址：</span>
 						<span id="show-address" class="isCreate">${studentInfo.address}</span>
 					</div>
-					<div class="line-50">
+					<div class="line-40">
 						<span>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;校：</span>
 						<span id="show-school" class="isCreate">${stSchoolInfo.school}</span>
 					</div>
-					<div class="line-50">
+					<div class="line-40">
 						<span>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业：</span>
 						<span id="show-major" class="isCreate">${stSchoolInfo.major}</span>
 					</div>
