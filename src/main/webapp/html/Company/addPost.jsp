@@ -17,7 +17,7 @@
 <header>
 	<div class="top-bar">
 	    <div class="top-bar-1200 clearfix">	
-	    	<a class="a-ext out" href="login.html">
+	    	<a class="a-ext out" href="exit.html">
 	    		<img src="../../images/ext.PNG" alt="">
 	    		<span>退出</span>
 	    	</a>

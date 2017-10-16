@@ -55,7 +55,12 @@ public class StudentControllers {
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
-	
+	//退出
+	@RequestMapping(value="exit")
+	public String exit(){
+		System.out.println("exit");
+		return "redirect:/login.html";
+	}
 	//学生个人信息
 	@RequestMapping(value="studentInfo")
 	public ModelAndView studentInfo(HttpSession httpSession)

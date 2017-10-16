@@ -79,7 +79,7 @@ public class UserControllers {
 		String url=null;
 		if(type==1){
 			StudentInfo studentInfo=this.studentService.login(username,password);
-			 if("".equals(studentInfo.getUsername())||studentInfo.getUsername()==null){
+			 if(studentInfo==null){
 				     int erro=1;
 					 /*mav.addObject("erro",erro );
 					 mav.setViewName("index");*/
@@ -94,7 +94,7 @@ public class UserControllers {
 		}
 		if(type==2){
 			CompanyInfo companyInfo=this.companyService.login(username,password);
-			 if("".equals(companyInfo.getUsername())||companyInfo.getUsername()==null){
+			 if(companyInfo==null){
 				     int erro=1;
 					 /*mav.addObject("erro",erro );
 					 mav.setViewName("index");*/
@@ -109,7 +109,7 @@ public class UserControllers {
 		}
 		if(type==3){
 			SchoolInfo schoolInfo=this.schoolService.login(username,password);
-			 if("".equals(schoolInfo.getUsername())||schoolInfo.getUsername()==null){
+			 if(schoolInfo==null){
 				     int erro=1;
 					 /*mav.addObject("erro",erro );
 					 mav.setViewName("index");*/

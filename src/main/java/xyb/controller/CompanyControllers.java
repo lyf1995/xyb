@@ -62,10 +62,11 @@ public class CompanyControllers {
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
-	@RequestMapping("/login")
-	public String login()
-	{
-		return "login";
+	//退出
+	@RequestMapping(value="exit")
+	public String exit(){
+		System.out.println("exit");
+		return "redirect:/login.html";
 	}
 	//公司信息
 	@RequestMapping(value="companyInfo",method=RequestMethod.GET)
