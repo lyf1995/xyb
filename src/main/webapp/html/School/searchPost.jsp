@@ -80,7 +80,8 @@
 			<div class="post-show-box" data-postid="${postPojo.id }">
 				<div class="operation-show clearfix">
 					<a href="searchPostDetailed.html?postId=${postPojo.id }" class="a-danger a-big searchPostDetailed">查看岗位详情</a>
-					<a href="javascript:;" class="a-danger a-big recommendPost">岗位推荐</a>
+					<c:if test="${postPojo.has=='no'}"><a href="javascript:;" class="a-danger a-big recommendPost">岗位推荐</a></c:if>
+					<c:if test="${postPojo.has=='yes'}"><a href="javascript:;" class="a-has a-big">已经推荐</a></c:if>
 				</div>
 				<div class="company-logo">
 					<c:choose>  

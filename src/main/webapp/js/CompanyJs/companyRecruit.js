@@ -107,6 +107,7 @@ $(function(){
 	//弹出校招对接dialog
 	$('.applyRecruit').click(function(){
 		var recruitId=$(this).parent().parent().data('recruitid');
+		var nowThis=$(this);
 		$('#btn-dialogBox').dialogBox({
 			width: 300,
 			height: 250,
@@ -115,6 +116,9 @@ $(function(){
 			confirmValue: '确定',
 			confirm:function(){
 				$.get('applyRecruit.html',{'recruitId':recruitId},function(data){
+					nowThis.attr('class','a-has a-big');
+					nowThis.off('click');
+					nowThis.html('已经申请');
 					alert(data);
 				});
 			},

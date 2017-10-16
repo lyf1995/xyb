@@ -206,9 +206,25 @@ public class CompanyControllers {
 	
 	//查看校招
 	@RequestMapping(value="companyRecruit",method=RequestMethod.GET)
-	public ModelAndView companyRecruit(){
+	public ModelAndView companyRecruit(HttpSession httpSession){
 		ModelAndView mav=new ModelAndView("/html/Company/companyRecruit");
 		List<RecruitPojo> recruitPojos=this.companyService.companyRecruit();
+		CompanyInfo companyInfo=(CompanyInfo) httpSession.getAttribute("companyInfo");
+		List<HasRecruit> hasRecruits=this.companyService.hasApply(companyInfo);
+		for(int i=0;i<recruitPojos.size();i++){
+			int has=0;
+			for(int j=0;j<hasRecruits.size();j++){
+				if(recruitPojos.get(i).getId()==hasRecruits.get(j).getRecruit().getId()){
+					has=1;
+				}
+			}
+			if(has==1){
+				recruitPojos.get(i).setHas("yes");
+			}
+			else{
+				recruitPojos.get(i).setHas("no");
+			}
+		}
 		mav.addObject("recruitPojos",recruitPojos);
 		return mav;
 	}
@@ -274,6 +290,19 @@ public class CompanyControllers {
 		
 		CompanyInfo companyInfo=(CompanyInfo)httpSession.getAttribute("companyInfo");
         User user=this.companyService.getUser(companyInfo.getUsername(),2);
+        List<HasRecruit> hasRecruits=this.companyService.hasApply(companyInfo);
+        int has=0;
+		for(int i=0;i<hasRecruits.size();i++){
+			if(hasRecruits.get(i).getRecruit().getId()==recruit.getId()){
+				has=1;
+			}
+		}
+		if(has==1){
+			recruit.setHas("yes");
+		}
+		else{
+			recruit.setHas("no");
+		}
 		mav.addObject("recruit",recruit);
 		mav.addObject("user",user);
 		mav.setViewName("/html/Company/companyRecruitDetailed");

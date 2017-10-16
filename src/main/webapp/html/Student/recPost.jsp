@@ -84,7 +84,8 @@
 			<div class="post-show-box" data-postid="${post.id }">
 				<div class="operation-show clearfix">
 					<a href="searchPostsDetailed.html?postId=${post.id }" class="a-danger a-big searchPostsDetailed">查看岗位详情</a>
-					<a href="javascript:;" class="a-danger a-big postResume">投递简历</a>
+					<c:if test="${post.has=='no'}"><a href="javascript:;" class="a-danger a-big postResume">投递简历</a></c:if>
+					<c:if test="${post.has=='yes'}"><a href="javascript:;" class="a-has a-big">已经投递</a></c:if>
 				</div>
 				<div class="company-logo">
 					<c:choose>  

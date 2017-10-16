@@ -107,7 +107,8 @@
 			<span class="post-jobExp">工作经验：${postPojo.jobExp }</span>
 			<span class="post-nature">工作性质：${postPojo.jobNature }</span>
 			<span class="post-eduRequset">最低学历：${postPojo.education }</span>
-			<button id="postResume" class="btn btn-danger">投递简历</button>
+			<c:if test="${postPojo.has=='no' }"><button class="postResume btn btn-danger">投递简历</button></c:if>
+			<c:if test="${postPojo.has=='yes' }"><button class="btn btn-has">已经投递</button></c:if>
 		</div>
 		<div class="line-90 clearfix margin-top20">
 			<span class="post-majorRequest">专业范围：${postPojo.postMajor }</span>

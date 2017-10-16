@@ -20,6 +20,7 @@ public class PostPojo {
 	private String comContacts;
 	private String comEmail;
 	private String comLogo;
+	private String has;
 	public int getId() {
 		return id;
 	}
@@ -133,6 +134,12 @@ public class PostPojo {
 	}
 	public void setComId(Integer comId) {
 		this.comId = comId;
+	}
+	public String getHas() {
+		return has;
+	}
+	public void setHas(String has) {
+		this.has = has;
 	}
 	
 }

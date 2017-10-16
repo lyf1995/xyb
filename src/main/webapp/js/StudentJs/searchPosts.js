@@ -106,6 +106,7 @@ $(function(){
 	//弹出dialog
 	$('.postResume').click(function(){
 		var postId=$(this).parent().parent().data('postid');
+		var nowThis=$(this);
 		$('#btn-dialogBox').dialogBox({
 			width: 300,
 			height: 250,
@@ -119,6 +120,9 @@ $(function(){
 					data:'postId='+postId,
 					dataType:'json',
 					success:function(data){
+						nowThis.attr('class','a-has a-big');
+						nowThis.off('click');
+						nowThis.html('已经投递');
 						alert(data);
 					}
 					

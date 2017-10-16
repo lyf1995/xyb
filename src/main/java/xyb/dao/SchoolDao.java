@@ -50,4 +50,6 @@ public interface SchoolDao {
 
 	public void sendContacts(Contact contact);
 
+	public List<RecPost> hasRecommend(SchoolInfo schoolInfo);
+
 }		

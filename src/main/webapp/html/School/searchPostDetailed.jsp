@@ -97,7 +97,8 @@
 			<span class="post-jobExp">工作经验：${postPojo.jobExp }</span>
 			<span class="post-nature">工作性质：${postPojo.jobNature }</span>
 			<span class="post-eduRequset">最低学历：${postPojo.education }</span>
-			<button id="recommendPost" class="btn btn-danger" data-postid="${postPojo.id }">岗位推荐</button>
+			<c:if test="${postPojo.has=='no' }"><button class="recommendPost btn btn-danger" data-postid="${postPojo.id }">岗位推荐</button></c:if>
+			<c:if test="${postPojo.has=='yes' }"><button class="btn btn-has" data-postid="${postPojo.id }">已经推荐</button></c:if>
 		</div>
 		<div class="line-90 clearfix margin-top20">
 			<span class="post-majorRequest">专业范围：${postPojo.postMajor }</span>

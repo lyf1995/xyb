@@ -383,10 +383,25 @@ public class StudentControllers {
 	
 	//查看岗位
 	@RequestMapping(value="searchPosts",method=RequestMethod.GET)
-	public ModelAndView searchPosts(){
+	public ModelAndView searchPosts(HttpSession httpSession){
 		ModelAndView mav=new ModelAndView("/html/Student/searchPosts");
 		List<PostPojo> postPojos=this.studentService.searchPosts();
-		
+		StudentInfo studentInfo=(StudentInfo) httpSession.getAttribute("studentInfo");
+		List<HasPost> hasPosts=this.studentService.hasPost(studentInfo);
+		for(int i=0;i<postPojos.size();i++){
+			int has=0;
+			for(int j=0;j<hasPosts.size();j++){
+				if(postPojos.get(i).getId()==hasPosts.get(j).getPost().getId()){
+					has=1;
+				}
+			}
+			if(has==1){
+				postPojos.get(i).setHas("yes");
+			}
+			else{
+				postPojos.get(i).setHas("no");
+			}
+		}
 		mav.addObject("postPojos",postPojos);
 		return mav;
 	}
@@ -398,6 +413,19 @@ public class StudentControllers {
 		PostPojo postPojo=this.studentService.searchPostsDetailed(postId);
 		StudentInfo studentInfo=(StudentInfo)httpSession.getAttribute("studentInfo");
 		User user=this.studentService.getUser(studentInfo.getUsername(),1);
+		List<HasPost> hasPosts=this.studentService.hasPost(studentInfo);
+		int has=0;
+		for(int i=0;i<hasPosts.size();i++){
+			if(hasPosts.get(i).getPost().getId()==postPojo.getId()){
+				has=1;
+			}
+		}
+		if(has==1){
+			postPojo.setHas("yes");
+		}
+		else{
+			postPojo.setHas("no");
+		}
 		mav.addObject("postPojo",postPojo);
 		mav.addObject("user",user);	
 		return mav;
@@ -430,6 +458,21 @@ public class StudentControllers {
 		ModelAndView mav=new ModelAndView();
 		StudentInfo studentInfo=(StudentInfo)httpSession.getAttribute("studentInfo");
 		List<Post> posts=this.studentService.teacherRecommend(studentInfo);
+		List<HasPost> hasPosts=this.studentService.hasPost(studentInfo);
+		for(int i=0;i<posts.size();i++){
+			int has=0;
+			for(int j=0;j<hasPosts.size();j++){
+				if(posts.get(i).getId()==hasPosts.get(j).getPost().getId()){
+					has=1;
+				}
+			}
+			if(has==1){
+				posts.get(i).setHas("yes");
+			}
+			else{
+				posts.get(i).setHas("no");
+			}
+		}
 		mav.addObject("posts",posts);
 		mav.setViewName("/html/Student/recPost");
 		return mav;

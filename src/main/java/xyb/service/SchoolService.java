@@ -7,6 +7,7 @@ import xyb.entity.CompanyInfo;
 import xyb.entity.Contact;
 import xyb.entity.HasRecruit;
 import xyb.entity.PostPojo;
+import xyb.entity.RecPost;
 import xyb.entity.Recruit;
 import xyb.entity.RecruitPojo;
 import xyb.entity.SchoolInfo;
@@ -48,6 +49,8 @@ public interface SchoolService {
 	public List<Contact> getContacts(User sendUser, User receiveUser);
 
 	public void sendContacts(Contact contact);
+
+	public List<RecPost> hasRecommend(SchoolInfo schoolInfo);
 
 	
 }

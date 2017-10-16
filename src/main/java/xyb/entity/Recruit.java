@@ -40,6 +40,8 @@ public class Recruit {
 	private Integer releaseTime;
 	@Transient
 	private String releaseTimeStr;
+	@Transient
+	private String has;
 	//多个校招被一个学校拥有
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "school_id", referencedColumnName = "id")
@@ -120,5 +122,11 @@ public class Recruit {
 	}
 	public void setReleaseTimeStr(String releaseTimeStr) {
 		this.releaseTimeStr = releaseTimeStr;
+	}
+	public String getHas() {
+		return has;
+	}
+	public void setHas(String has) {
+		this.has = has;
 	}
 }

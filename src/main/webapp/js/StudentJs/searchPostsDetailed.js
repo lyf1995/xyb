@@ -61,32 +61,12 @@ $(function(){
 			$(this).children('img').attr('src','../../images/down2.png');
 		}
 	);
-
-	/*//ajax加载时显示
-	$(document).ajaxStart(function(){
-		$('body').loading({
-			loadingWidth:240,
-			title:'请稍等!',
-			name:'test',
-			discription:'',
-			direction:'column',
-			type:'origin',
-			// originBg:'#71EA71',
-			originDivWidth:40,
-			originDivHeight:40,
-			originWidth:6,
-			originHeight:6,
-			smallLoading:false,
-			loadingMaskBg:'rgba(0,0,0,0.2)'
-		});
-	}).ajaxStop(function(){
-		removeLoading('test');
-	});*/
 	
 	
 	//弹出dialog
-	$('#postResume').click(function(){
+	$('.postResume').click(function(){
 		var postId=$('#postId').val();
+		var nowThis=$(this);
 		$('#btn-dialogBox').dialogBox({
 			width: 300,
 			height: 250,
@@ -100,6 +80,9 @@ $(function(){
 					data:'postId='+postId,
 					dataType:'json',
 					success:function(data){
+						nowThis.off('click');
+						nowThis.attr('class','btn btn-has');
+						nowThis.html('已经投递');
 						alert(data);
 					},
 					beforeSend:function(){

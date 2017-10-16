@@ -365,6 +365,28 @@ body{
 	background-color: #d9534f;
 	border-color: #ac2925;
 }
+.a-has{
+	text-decoration: none;
+	color: #fff;
+	background-color:#ccc;
+	border-radius: 4px;
+	border: 1px solid transparent;
+	text-align: center;
+	padding: 6px 12px;
+	margin-top:20px;
+}
+.a-has:link{
+	text-decoration: none;
+	color: #fff;
+}
+.a-has:visited{
+	text-decoration: none;
+	color: #fff;
+}
+.a-has:hover{
+	text-decoration: none;
+	color: #fff;
+}
 .a-danger:visited{
 	text-decoration: none;
 	color: #fff;

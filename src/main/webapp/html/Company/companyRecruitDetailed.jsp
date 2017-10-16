@@ -99,7 +99,8 @@
 				<span class="school-name">学校：${recruit.schoolInfo.schName }</span>
 				<span class="startTime">校招时间：${recruit.startTimeStr }</span><span class="zhi">至</span>
 				<span class="endTime">${recruit.endTimeStr }</span>
-				<button id="applyRecruit" class="btn btn-danger">申请校招</button>
+				<c:if test="${recruit.has=='no' }"><button class="applyRecruit btn btn-danger">申请校招</button></c:if>
+				<c:if test="${recruit.has=='yes' }"><button class="btn btn-has">已经申请</button></c:if>
 			</div>
 			<div class="line-90 clearfix marginTop20 paddingLeft20">
 				<span  class="address">详细地址：</span><span class="address">${recruit.address }</span>

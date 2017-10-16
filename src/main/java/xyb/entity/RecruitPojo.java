@@ -1,7 +1,5 @@
 package xyb.entity;
 
-
-
 public class RecruitPojo {
 	private int id;
 	private String recruitName;
@@ -15,6 +13,7 @@ public class RecruitPojo {
 	private Integer releaseTime;
 	private String schName;
 	private String schLogo;
+	private String has;
 	public int getId() {
 		return id;
 	}
@@ -88,6 +87,12 @@ public class RecruitPojo {
 	}
 	public void setSchLogo(String schLogo) {
 		this.schLogo = schLogo;
+	}
+	public String getHas() {
+		return has;
+	}
+	public void setHas(String has) {
+		this.has = has;
 	}
 	
 }

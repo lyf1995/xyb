@@ -46,6 +46,8 @@ public class Post {
 	private Integer postTime;
 	@Transient
 	private String postTimeStr;
+	@Transient
+	private String has;
 	//多个岗位被一个公司发布
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
@@ -185,6 +187,14 @@ public class Post {
 
 	public void setRecPosts(Set<RecPost> recPosts) {
 		this.recPosts = recPosts;
+	}
+
+	public String getHas() {
+		return has;
+	}
+
+	public void setHas(String has) {
+		this.has = has;
 	}
 
 

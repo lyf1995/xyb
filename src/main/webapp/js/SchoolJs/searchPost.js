@@ -102,6 +102,7 @@ $(function(){
 	
 	//弹出dialog
 	$('.recommendPost').click(function(){
+		var nowThis=$(this);
 		var postId=$(this).parent().parent().data('postid');
 		$('#btn-dialogBox').dialogBox({
 			width: 300,
@@ -116,6 +117,9 @@ $(function(){
 					data:'postId='+postId,
 					dataType:'json',
 					success:function(data){
+						nowThis.attr('class','a-has a-big');
+						nowThis.off('click');
+						nowThis.html('已经推荐');
 						alert(data);
 					}
 					

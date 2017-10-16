@@ -24,8 +24,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import xyb.entity.CompanyInfo;
 import xyb.entity.Contact;
+import xyb.entity.HasPost;
 import xyb.entity.HasRecruit;
 import xyb.entity.PostPojo;
+import xyb.entity.RecPost;
 import xyb.entity.Recruit;
 import xyb.entity.RecruitPojo;
 import xyb.entity.SchoolInfo;
@@ -206,9 +208,25 @@ public class SchoolControllers {
 	
 	//查看岗位
 	@RequestMapping(value="searchPost",method=RequestMethod.GET)
-	public ModelAndView searchPost(){
+	public ModelAndView searchPost(HttpSession httpSession){
 		ModelAndView mav=new ModelAndView("/html/School/searchPost");
 		List<PostPojo> postPojos=this.schoolService.searchPost();
+		SchoolInfo schoolInfo=(SchoolInfo) httpSession.getAttribute("schoolInfo");
+		List<RecPost> recPosts=this.schoolService.hasRecommend(schoolInfo);
+		for(int i=0;i<postPojos.size();i++){
+			int has=0;
+			for(int j=0;j<recPosts.size();j++){
+				if(postPojos.get(i).getId()==recPosts.get(j).getPost().getId()){
+					has=1;
+				}
+			}
+			if(has==1){
+				postPojos.get(i).setHas("yes");
+			}
+			else{
+				postPojos.get(i).setHas("no");
+			}
+		}
 		mav.addObject("postPojos",postPojos);
 		return mav;
 	}
@@ -268,6 +286,19 @@ public class SchoolControllers {
 		PostPojo postPojo=this.schoolService.searchPostsDetailed(postId);
 		SchoolInfo schoolInfo=(SchoolInfo)httpSession.getAttribute("schoolInfo");
 		User user=this.schoolService.getUser(schoolInfo.getUsername(),3);
+		List<RecPost> recPosts=this.schoolService.hasRecommend(schoolInfo);
+		int has=0;
+		for(int i=0;i<recPosts.size();i++){
+			if(recPosts.get(i).getPost().getId()==postPojo.getId()){
+				has=1;
+			}
+		}
+		if(has==1){
+			postPojo.setHas("yes");
+		}
+		else{
+			postPojo.setHas("no");
+		}
 		mav.addObject("user",user);
 		mav.addObject("postPojo",postPojo);
 		return mav;

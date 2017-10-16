@@ -63,8 +63,9 @@ $(function(){
 	});
 	
 	//弹出dialog
-	$('#applyRecruit').click(function(){
+	$('.applyRecruit').click(function(){
 		var recruitId=$('#recruitId').val();
+		var nowThis=$(this);
 		$('#btn-dialogBox').dialogBox({
 			width: 300,
 			height: 250,
@@ -77,6 +78,9 @@ $(function(){
 					type:'GET',
 					data:'recruitId='+recruitId,
 					success:function(data){
+						nowThis.off('click');
+						nowThis.attr('class','btn btn-has');
+						nowThis.html('已经申请');
 						alert(data);
 					},
 					beforeSend:function(){

@@ -83,8 +83,9 @@
 		<c:forEach var="recruitPojo" items="${recruitPojos }">
 			<div class="recruit-show-box" data-recruitid="${recruitPojo.id }">
 				<div class="operation-show clearfix">
-					<a href="javascript:;" class="a-danger a-big applyRecruit">申请校招</a>
 					<a href="companyRecruitDetailed.html?recruitId=${recruitPojo.id }" class="a-danger a-big lookRecruitDetailed">查看详情</a>
+					<c:if test="${recruitPojo.has=='no'}"><a href="javascript:;" class="a-danger a-big applyRecruit">申请校招</a></c:if>
+					<c:if test="${recruitPojo.has=='yes'}"><a href="javascript:;" class="a-has a-big">已经申请</a></c:if>
 				</div>
 				<div class="recruit-logo">
 					<c:choose>  

@@ -263,6 +263,14 @@ body{
 	height:50px;
 	font-size:18px;
 }
+.btn-has{
+	background:#ccc;
+	color:white;
+}
+.btn-has:focus,.btn-has:hover{
+	background:#ccc;
+	color:white;
+}
 .marginTop30{
 	margin-top:30px;
 }

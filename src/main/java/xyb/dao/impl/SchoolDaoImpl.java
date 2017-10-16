@@ -128,5 +128,11 @@ public class SchoolDaoImpl implements SchoolDao{
 	public void sendContacts(Contact contact) {
 		sessionFactory.getCurrentSession().save(contact);
 	}
+	public List<RecPost> hasRecommend(SchoolInfo schoolInfo) {
+		String hql="from RecPost recPost where recPost.schoolInfo.id="+schoolInfo.getId();
+		@SuppressWarnings("unchecked")
+		List<RecPost> recPosts=(List<RecPost>)sessionFactory.getCurrentSession().createQuery(hql).list();
+		return recPosts;
+	}
 	
 }

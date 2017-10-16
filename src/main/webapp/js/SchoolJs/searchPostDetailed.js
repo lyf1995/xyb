@@ -64,8 +64,9 @@ $(function(){
 	);
 
 	//弹出dialog
-	$('#recommendPost').click(function(){
+	$('.recommendPost').click(function(){
 		var postId=$(this).data('postid');
+		var nowThis=$(this);
 			$('#btn-dialogBox').dialogBox({
 				width: 300,
 				height: 250,
@@ -79,6 +80,9 @@ $(function(){
 						data:'postId='+postId,
 						dataType:'json',
 						success:function(data){
+							nowThis.off('click');
+							nowThis.attr('class','btn btn-has');
+							nowThis.html('已经推荐');
 							alert(data);
 						},
 						beforeSend:function(){

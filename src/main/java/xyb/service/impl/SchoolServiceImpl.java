@@ -263,5 +263,9 @@ public class SchoolServiceImpl implements SchoolService{
 		
 		this.schoolDao.sendContacts(contact);
 	}
+	public List<RecPost> hasRecommend(SchoolInfo schoolInfo) {
+		List<RecPost> recPosts=this.schoolDao.hasRecommend(schoolInfo);
+		return recPosts;
+	}
 	
 }
