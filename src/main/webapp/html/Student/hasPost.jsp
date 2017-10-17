@@ -32,7 +32,7 @@
 	    		<span>您好,${studentInfo.username}</span>
 	    		<img src="../../images/down.png" alt="">
 	    		<ul class="clearfix">
-	    			<li><a href="personInfo.html">个人信息</a></li>
+	    			<li><a href="studentInfo.html">个人信息</a></li>
 	    			<li><a href="javascript:;">修改密码</a></li>
 	    		</ul>
 	    	</div>
